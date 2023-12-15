@@ -1,0 +1,22 @@
+@import url('https://fonts.googleapis.com/css2?family=Cedarville+Cursive&family=Roboto:wght@300;400;500&display=swap');
+
+
+:root {
+  --background-color: #E8F1F2;
+  --modal-color: #B3EFB2;
+  --primary-color: #212227;
+  --secondary-color: #00171F;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Cedarville Cursive', cursive;
+  font-family: 'Roboto', sans-serif;
+  background-color: var(--background-color);
+  min-height: 100vh;
+}
