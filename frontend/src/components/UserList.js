@@ -137,7 +137,7 @@ const UserList = () => {
                             filteredUsers.map((item) => (
                                 <Card sx={{ minWidth: 250, margin: 2 }} key={item._id}>
                                     <CardContent >
-                                        filteredUsers
+                                        {item.email}
                                         <Typography variant="h5" component="div">
                                             {item.username}
                                         </Typography>

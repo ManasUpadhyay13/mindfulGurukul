@@ -4,15 +4,17 @@ import '../styles/editUser.css'
 import BackButton from '../components/BackButton'
 import LogoutButton from '../components/LogoutButton'
 import axios from 'axios'
+import { useParams } from 'react-router-dom'
 
 const EditUser = () => {
 
     const [user, setUser] = useState()
-    const [id, setId] = useState()
+    const [userId, setId] = useState()
+    const params = useParams()
 
     const getUserData = async () => {
         try {
-            const res = await axios.get(`http://127.0.0.1:3001/getSingleUser?id=${id}`)
+            const res = await axios.get(`http://127.0.0.1:3001/getSingleUser?id=${userId}`)
 
             setUser(res.data);
 
@@ -22,8 +24,9 @@ const EditUser = () => {
     }
 
     useEffect(() => {
-        setId((window.location.href).split('=')[1])
-        if (id) {
+        const temp = (window.location.href).split('=')[1]
+        setId(temp)
+        if (userId) {
             getUserData()
         }
     }, [])
@@ -34,7 +37,7 @@ const EditUser = () => {
             <BackButton />
             {
                 user && (
-                    <EditUserFrom user={user} id={id} />
+                    <EditUserFrom user={user} id={userId} />
                 )
             }
         </div>

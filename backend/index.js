@@ -97,10 +97,9 @@ app.post('/addUserData', async (req, res) => {
 
 
 // View all users
-
 app.get('/viewAllUsers', async (req, res) => {
     try {
-        const users = await UserData.find();
+        let users = await UserData.find();
 
         const sortOption = req.query.sort || 'default';
         console.log(sortOption);
@@ -129,6 +128,7 @@ app.get('/viewAllUsers', async (req, res) => {
         res.status(500).json({ message: error.message });
     }
 });
+
 
 // get single user
 
