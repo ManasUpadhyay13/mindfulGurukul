@@ -11,8 +11,6 @@ import { useNavigate } from "react-router-dom";
 
 export default function EditUserFrom({ user, id }) {
 
-    console.log(user);
-
     const [loading, setLoading] = useState(false)
     const navigate = useNavigate()
     const { register, handleSubmit } = useForm({
@@ -25,7 +23,6 @@ export default function EditUserFrom({ user, id }) {
             const res = await axios.patch(`https://mindfulgurukilprojectbackend.onrender.com/editUser/${id}`, {
                 ...data
             })
-            console.log(res);
             navigate("/")
 
         } catch (error) {

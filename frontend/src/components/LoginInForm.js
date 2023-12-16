@@ -22,11 +22,10 @@ export default function LoginInForm() {
     const onSubmit = async (data) => {
         setLogInLoading(true)
         try {
-            const res = await axios.post("https://mindfulgurukilprojectbackend.onrender.com/login", {
+            const res = await axios.post(`https://mindfulgurukilprojectbackend.onrender.com/login`, {
                 ...data
             })
 
-            console.log(res);
             if (res.status === 200) {
                 setMessage("Email already registered")
                 setType("error")

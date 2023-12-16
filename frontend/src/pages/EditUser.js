@@ -12,9 +12,9 @@ const EditUser = () => {
     const [userId, setId] = useState()
     const params = useParams()
 
-    const getUserData = async () => {
+    const getUserData = async (id) => {
         try {
-            const res = await axios.get(`http://127.0.0.1:3001/getSingleUser?id=${userId}`)
+            const res = await axios.get(`https://mindfulgurukilprojectbackend.onrender.com/getSingleUser?id=${id}`)
 
             setUser(res.data);
 
@@ -26,9 +26,7 @@ const EditUser = () => {
     useEffect(() => {
         const temp = (window.location.href).split('=')[1]
         setId(temp)
-        if (userId) {
-            getUserData()
-        }
+        getUserData(temp)
     }, [])
 
     return (

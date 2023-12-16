@@ -33,6 +33,7 @@ const UserList = () => {
 
     const handleChange = (event) => {
         setSort(event.target.value);
+        window.localStorage.setItem('sort', event.target.value)
     };
 
     const handleClickOpen = (item) => {
@@ -48,8 +49,9 @@ const UserList = () => {
     const getAllUserData = async () => {
         setLoading(true)
         try {
-            // const res = await axios.get("https://mindfulgurukilprojectbackend.onrender.com/viewAllUsers")
-            const res = await axios.get(`http://127.0.0.1:3001/viewAllUsers?sort=${sort}`)
+            // const res = await axios.get("${process.env.BACKEND_URL}/viewAllUsers")
+            const res = await axios.get(`https://mindfulgurukilprojectbackend.onrender.com/viewAllUsers?sort=${sort}`)
+            console.log(res);
             setUserList(res.data);
         } catch (error) {
             console.log(error)
@@ -66,7 +68,6 @@ const UserList = () => {
     const filteredUsers = userList.filter(user => user.username.toLowerCase().includes(filterWord.toLowerCase()));
 
     useEffect(() => {
-        console.log("trigger");
         getAllUserData()
     }, [sort])
 
@@ -74,7 +75,6 @@ const UserList = () => {
     const handleDelete = async () => {
         try {
             const res = await axios.delete(`https://mindfulgurukilprojectbackend.onrender.com/deleteUser/${deleteId}`)
-            console.log(res);
             setOpen(false)
             getAllUserData()
         } catch (error) {
@@ -83,6 +83,10 @@ const UserList = () => {
     }
 
     useEffect(() => {
+        const checkSort = window.localStorage.getItem("sort")
+        if (checkSort) {
+            setSort(checkSort)
+        }
         getAllUserData()
     }, [])
 
@@ -120,7 +124,7 @@ const UserList = () => {
                             display: "flex",
                             alignItems: "center",
                             justifyContent: "center",
-                            height: "100vh"
+                            height: "80vh"
                         }}
                     >
                         <Typography variant="h5" component="div">

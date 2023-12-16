@@ -43,7 +43,7 @@ export default function SignUpForm() {
     const onSubmit = async (data) => {
         setSignUpLoading(true)
         try {
-            const res = await axios.post("https://mindfulgurukilprojectbackend.onrender.com/signup", {
+            const res = await axios.post(`https://mindfulgurukilprojectbackend.onrender.com/signup`, {
                 ...data
             })
 
